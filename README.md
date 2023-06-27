@@ -1,7 +1,7 @@
-# Games
+# Game Development
 
 My current game development progress:
-* JavaScript
+* HTML, CSS, JavaScript
 * Pygame (Python)
 * Ursina (Python)
 * Unity (C#)
