@@ -1,0 +1,206 @@
+/* From  https://fonts.google.com/specimen/Quicksand*/
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+:root {
+    --card-width-lg: 120px;
+    --card-height-lg: 168px;
+
+    --num-cards: 4;
+
+    --card-space-lg: 40px;
+
+    --badge-bg-color: darkgrey;
+    --primary-color: black;
+    --secondary-color: white;
+
+    --primary-font: 'Quicksand', sans-serif;
+}
+body {
+    height: 73vh;
+    font-family: var(--primary-font);
+    font-size: 0.8rem;
+}
+main {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+}
+.card-container {
+    position: relative;
+    height: calc(var(--card-height-lg) * (var(--num-cards) / 2) + var(--card-space-lg));
+    width: calc(var(--card-width-lg) * (var(--num-cards) / 2) + var(--card-space-lg));
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "a b"
+                         "c d";
+}
+
+.card-pos-a {
+    grid-area: a;
+    /* background-color: crimson; */
+}
+.card-pos-b {
+    grid-area: b;
+    /* background-color: rgb(255, 204, 0); */
+}
+.card-pos-c {
+    grid-area: c;
+    /* background-color: forestgreen; */
+}
+.card-pos-d {
+    grid-area: d;
+    /* background-color: blue; */
+}
+.card-pos-a, .card-pos-b, .card-pos-c, .card-pos-d{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    position: absolute;
+    height: var(--card-height-lg);
+    width: var(--card-width-lg);
+    perspective: 1000px;
+    cursor: pointer;
+    transition: transform 1s ease-in-out;
+}
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.card-img {
+    height: 100%;
+}
+.card-back {
+    transform: rotateY(180deg);
+}
+.card-inner.flip-it {
+    transform: rotateY(180deg);
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    /* puts child elements on top of one another instead of in a row (default) 
+    child elements: title (header, image), round (score, round), status, button*/
+    margin-bottom: 10px;
+}
+.header-title-container {
+    display: flex;
+    justify-content: center;
+}
+.header-round-info-container {
+    display: flex;
+    justify-content: center;
+}
+.current-status {
+    font-size: 1.2rem;
+    text-align: center;
+}
+.header-status-info-container,
+.header-button-container,
+.header-score-container,
+.header-round-container,
+.header-img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-score-container,
+.header-round-container {
+    height: 20px;
+    width: 150px;
+}
+.header-img-container {
+    width: 200px;
+}
+.header-img {
+    height: 75px;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    padding-top: 5px;
+    padding-bottom: 2px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+    transform: rotate(-3deg)
+}
+.badge {
+    background-color: var(--badge-bg-color);
+    color: var(--secondary-color);
+    padding: 2px 10px 3px;
+    border-radius: 15px;
+}
+
+/* Button 28 From https://getcssscan.com/css-buttons-examples/ */
+.play-game {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: none;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 40px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  will-change: transform;
+  animation: game-play-button-fade-in 10s 1;
+}
+.play-game:disabled {
+  pointer-events: none;
+}
+.play-game:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+.play-game:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+.gameplay-button-container {
+    width: 130px;
+    height: 60px;
+}
+
+@keyframes game-play-button-fade-in {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.card.shuffle-left {
+    transform: translateX(200px) translateY(40px)
+}
+.card.shuffle-right {
+    transform: translateX(-200px) translateY(-40px)
+}
+.card.fly-in {
+    transform: translateX(-1000px) translateY(-600px) rotate(45deg)
+}
